@@ -88,6 +88,7 @@ class _OrtalamaHesaplaAppState extends State<OrtalamaHesaplaApp> {
                       onHarfChanged: (value) {
                         setState(() {
                           selectedValue = value;
+                          print(selectedValue);
                         });
                       },
                     ),

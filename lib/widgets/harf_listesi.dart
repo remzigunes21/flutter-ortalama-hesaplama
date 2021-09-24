@@ -24,7 +24,10 @@ class _HarfListesiState extends State<HarfListesi> {
       ),
       child: DropdownButton<double>(
         onChanged: (value) {
-          widget.onHarfChanged(value);
+          setState(() {
+            selectedHarfValue = value;
+            widget.onHarfChanged(selectedHarfValue);
+          });
         },
         underline: Container(),
         value: selectedHarfValue,

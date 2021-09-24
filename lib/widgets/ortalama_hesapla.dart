@@ -3,6 +3,7 @@ import 'package:dinamik_ortalama/helper/data_helpeer.dart';
 import 'package:dinamik_ortalama/model/ders.dart';
 import 'package:dinamik_ortalama/widgets/ders_listesi.dart';
 import 'package:dinamik_ortalama/widgets/harf_listesi.dart';
+import 'package:dinamik_ortalama/widgets/kredi_dropdown_listesi.dart';
 import 'package:dinamik_ortalama/widgets/ortalama_g%C3%B6ster.dart';
 import 'package:flutter/material.dart';
 
@@ -57,6 +58,9 @@ class _OrtalamaHesaplaAppState extends State<OrtalamaHesaplaApp> {
               onDismiss: (index) {
                 setState(() {
                   DataHelper.tumEklenenDersler.removeAt(index);
+                  if (DataHelper.tumEklenenDersler.length == 0) {
+                    _formKey.currentState.reset();
+                  }
                 });
               },
             ),
@@ -97,7 +101,11 @@ class _OrtalamaHesaplaAppState extends State<OrtalamaHesaplaApp> {
                 Expanded(
                   child: Padding(
                     padding: StaticVariables.yatayPadding,
-                    child: _buildKredilerDropDown(),
+                    child: KrediDropDownListesi(onChangeKredi: (value) {
+                      setState(() {
+                        selectedKrediValue = value;
+                      });
+                    }),
                   ),
                 ),
                 IconButton(
